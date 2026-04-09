@@ -14,7 +14,7 @@ Everything runs through native Chrome Extension APIs: `chrome.alarms` for timers
 
 ## Demo
 
-<video src="docs/FocusLock.mp4" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/ed7a5d05-7722-4913-bcb6-0ea07f58541f" controls width="100%"></video>
 
 ---
 
