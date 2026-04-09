@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "FocusLock",
+  "version": "1.0.0",
+  "description": "Session-aware distraction firewall with accountability dashboard.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation",
+    "alarms",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "content/border.js",
+        "content/toast.js",
+        "content/drift_overlay.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "commands": {
+    "start-deep-work": {
+      "suggested_key": { "default": "Alt+F" },
+      "description": "Start Deep Work session"
+    },
+    "end-session": {
+      "suggested_key": { "default": "Alt+Shift+F" },
+      "description": "End current session"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  }
+}
