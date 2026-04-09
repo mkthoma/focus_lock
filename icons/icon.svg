@@ -1,0 +1,44 @@
+<svg width="128" height="128" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background -->
+  <rect width="200" height="200" rx="28" fill="#0D1117"/>
+
+  <!-- Outer dashed ring -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#0F766E" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.4"/>
+
+  <!-- Crosshair ticks (outer) -->
+  <line x1="100" y1="20" x2="100" y2="29" stroke="#0F766E" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+  <line x1="100" y1="171" x2="100" y2="180" stroke="#0F766E" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+  <line x1="20" y1="100" x2="29" y2="100" stroke="#0F766E" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+  <line x1="171" y1="100" x2="180" y2="100" stroke="#0F766E" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="58" fill="none" stroke="#0F766E" stroke-width="0.8" opacity="0.2"/>
+
+  <!-- Inner crosshair lines (gap in center for padlock) -->
+  <line x1="42" y1="100" x2="68" y2="100" stroke="#0F766E" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="132" y1="100" x2="158" y2="100" stroke="#0F766E" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="100" y1="42" x2="100" y2="68" stroke="#0F766E" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="100" y1="132" x2="100" y2="158" stroke="#0F766E" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Padlock shackle (dark outer stroke for depth) -->
+  <path d="M 83 87 L 83 65 Q 83 44 100 44 Q 117 44 117 65 L 117 87"
+        fill="none" stroke="#0F766E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Padlock shackle (light inner stroke) -->
+  <path d="M 83 87 L 83 65 Q 83 44 100 44 Q 117 44 117 65 L 117 87"
+        fill="none" stroke="#5DCAA5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Padlock body -->
+  <rect x="74" y="87" width="52" height="44" rx="8" fill="#0F766E"/>
+  <!-- Body shadow overlay -->
+  <rect x="74" y="87" width="52" height="44" rx="8" fill="#085041" opacity="0.35"/>
+
+  <!-- Keyhole -->
+  <circle cx="100" cy="107" r="7" fill="#5DCAA5" opacity="0.95"/>
+  <rect x="97" y="112" width="6" height="9" rx="2" fill="#5DCAA5" opacity="0.95"/>
+
+  <!-- Body top highlight -->
+  <rect x="74" y="87" width="52" height="5" rx="8" fill="#1D9E75" opacity="0.5"/>
+
+  <!-- Center dot -->
+  <circle cx="100" cy="100" r="2" fill="#14B8A6"/>
+</svg>
