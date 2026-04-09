@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusLock Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="page-header">
+    <img src="../icons/icon.svg" class="logo-img" alt="FocusLock logo" width="32" height="32">
+    <h1>FocusLock Settings</h1>
+    <span class="header-sub">v1.0.0</span>
+  </header>
+
+  <!-- ── Session Modes ── -->
+  <section class="section">
+    <div class="section-title">Session Modes</div>
+    <div class="card" id="modes-container">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ── Drift Signals ── -->
+  <section class="section">
+    <div class="section-title">Drift Signals</div>
+    <div class="card">
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Border pulse</div>
+          <div class="toggle-sub">Pulsing orange border 0–60s on a drift domain</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="signal-border">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Toast notification</div>
+          <div class="toggle-sub">Non-blocking reminder after 60 seconds</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="signal-toast">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Drift overlay</div>
+          <div class="toggle-sub">Full-page overlay with session stats after 3 minutes</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="signal-overlay">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">System notifications</div>
+          <div class="toggle-sub">OS-level alert on session end and drift (requires permission)</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="signal-notifications">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Drift Timers ── -->
+  <section class="section">
+    <div class="section-title">Drift Warning Timers</div>
+    <div class="card">
+      <div class="field-wrap">
+        <div class="field-label">
+          Tier 1 — Red page flash + toast notification (seconds on a blocked site)
+        </div>
+        <input type="number" class="text-input" id="drift-tier1" min="5" max="600" style="width:80px;">
+      </div>
+      <div class="field-wrap" style="border-top:1px solid var(--color-border);">
+        <div class="field-label">
+          Tier 2 — Full-page overlay popup (seconds on a blocked site)
+        </div>
+        <input type="number" class="text-input" id="drift-tier2" min="10" max="600" style="width:80px;">
+      </div>
+      <div class="field-wrap" style="border-top:1px solid var(--color-border); color:var(--color-text-muted); font-size:11px; line-height:1.5;">
+        Tier 1 must be less than Tier 2. The red flash uses a slow 4-second pulse (0.25 Hz) and is safe for photosensitive users.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Break Glass ── -->
+  <section class="section">
+    <div class="section-title">Break-Glass Settings</div>
+    <div class="card">
+      <div class="field-wrap">
+        <div class="field-label">Confirmation phrase (type this to break a locked session)</div>
+        <input type="text" class="text-input" id="break-phrase" placeholder="BREAK" maxlength="20">
+      </div>
+      <div class="field-wrap" style="border-top:1px solid var(--color-border);">
+        <div class="field-label">Cooldown after breaking a session (minutes, 1–60)</div>
+        <input type="number" class="text-input" id="cooldown-min" min="1" max="60" style="width:80px;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Keyboard Shortcuts ── -->
+  <section class="section">
+    <div class="section-title">Keyboard Shortcuts</div>
+    <div class="card">
+      <div class="shortcut-row">
+        <span>Start Deep Work session</span>
+        <span class="kbd">Alt + F</span>
+      </div>
+      <div class="shortcut-row">
+        <span>End current session</span>
+        <span class="kbd">Alt + Shift + F</span>
+      </div>
+      <div style="padding:10px 16px;">
+        <p style="font-size:11px;color:var(--color-text-muted);">
+          To change shortcuts, open <strong>chrome://extensions/shortcuts</strong> in a new tab.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Data Management ── -->
+  <section class="section">
+    <div class="section-title">Data Management</div>
+    <div class="card">
+      <div class="field-wrap">
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="btn-export-csv">⬇ Export CSV</button>
+          <button class="btn btn-danger"    id="btn-clear-history">🗑 Clear History</button>
+          <button class="btn btn-danger"    id="btn-reset-all">↺ Reset to Defaults</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Save bar -->
+<div class="save-bar">
+  <span class="save-status" id="save-status"></span>
+  <button class="btn btn-primary" id="btn-save">Save Settings</button>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusLock</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+      <img src="../icons/icon.svg" class="logo-img" alt="FocusLock logo" width="28" height="28">
+      <span>FocusLock</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="btn-settings" title="Settings" aria-label="Open settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Session bar -->
+  <div class="session-bar" id="session-bar">
+    <!-- Active session -->
+    <div class="session-active hidden" id="session-active">
+      <div class="mode-badge" id="session-mode-badge">
+        <span id="session-mode-icon"></span>
+        <span id="session-mode-label"></span>
+      </div>
+      <div class="session-meta">
+        <span class="countdown" id="countdown">--:--</span>
+        <span class="focus-score-inline" id="focus-score-inline"></span>
+      </div>
+      <button class="btn-end" id="btn-end-session">⏹ End</button>
+    </div>
+    <div class="session-progress hidden" id="session-progress">
+      <div class="session-progress-fill" id="session-progress-fill" style="width:0%"></div>
+    </div>
+
+    <!-- Cooldown bar -->
+    <div class="cooldown-bar hidden" id="cooldown-bar">
+      <span class="dot">●</span>
+      <span id="cooldown-text">Cooldown active</span>
+    </div>
+
+    <!-- Idle (no session) -->
+    <div id="session-idle" class="empty-state" style="padding:4px 0;">
+      No active session — choose a mode below
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+
+    <!-- Focus Score + Streak -->
+    <div>
+      <div class="section-label">This Week</div>
+      <div class="score-row">
+        <div class="donut-wrapper">
+          <canvas id="donut-chart" width="120" height="120"></canvas>
+          <div class="donut-label">
+            <span class="donut-score" id="donut-score">--</span>
+            <span class="donut-sub">Focus</span>
+          </div>
+        </div>
+        <div class="score-meta">
+          <div class="streak-badge">
+            <span class="streak-count" id="streak-count">0</span>
+            <span style="font-size:16px;">🔥</span>
+            <span class="streak-label"><span style="font-size:11px;font-weight:700;">day</span><span>streak</span></span>
+          </div>
+          <div class="meta-row">Best day: <strong id="best-day">--</strong></div>
+          <div class="meta-row">Sessions: <strong id="total-sessions">0</strong></div>
+          <div class="meta-row" id="worst-offender-meta" style="display:none;">
+            Worst: <strong id="worst-offender-domain">--</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily breakdown chart -->
+    <div>
+      <div class="section-label">Daily Breakdown</div>
+      <div class="chart-box" style="height:90px;">
+        <canvas id="bar-chart" height="70"></canvas>
+      </div>
+    </div>
+
+    <!-- Worst offenders -->
+    <div id="offenders-section">
+      <div class="section-label">Drift Offenders</div>
+      <div class="offender-list" id="offender-list">
+        <div class="empty-state">No drift recorded this week 🎉</div>
+      </div>
+    </div>
+
+    <!-- Session log -->
+    <div>
+      <div class="section-label">Recent Sessions</div>
+      <div class="session-log" id="session-log">
+        <div class="empty-state">No sessions yet</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Mode selector (bottom) -->
+  <div class="mode-selector" id="mode-selector">
+    <button class="mode-btn deep_work" data-mode="deep_work" id="btn-deep">
+      <span class="mode-icon">🔴</span>
+      <span>Deep Work</span>
+    </button>
+    <button class="mode-btn shallow_work" data-mode="shallow_work" id="btn-shallow">
+      <span class="mode-icon">🟡</span>
+      <span>Shallow</span>
+    </button>
+    <button class="mode-btn break" data-mode="break" id="btn-break">
+      <span class="mode-icon">🟢</span>
+      <span>Break</span>
+    </button>
+  </div>
+
+  <!-- Break-glass modal -->
+  <div class="modal-backdrop hidden" id="break-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title">⚠️ End session early?</h3>
+      <p>Breaking this session will be logged in your accountability report. Type <strong>BREAK</strong> to confirm.</p>
+      <input type="text" id="break-phrase-input" placeholder="Type BREAK" autocomplete="off" spellcheck="false">
+      <textarea id="break-reason-input" placeholder="Reason (optional)"></textarea>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="modal-cancel">Cancel</button>
+        <button class="btn-confirm" id="modal-confirm" disabled>Confirm Break</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../lib/chart.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
